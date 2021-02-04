@@ -1,5 +1,5 @@
 # Sorting-Algorithm-Visualiser
-A simple class-based sorting algorithm visualiser built with python
+A simple class-based sorting algorithm visualiser built with python and an Extension of https://dev.to/kgprajwal/build-a-sorting-visualizer-in-python-2oej
 #
 # Algorithms:
 - Bubble Sort
@@ -8,9 +8,9 @@ A simple class-based sorting algorithm visualiser built with python
 - Merge Sort
 - Quick Sort
 - Heap Sort
-# // TODO:
 - Radix Sort
 - Counting Sort
+# // TODO:
 - Bucket Sort
 - Shell Sort
 
@@ -26,3 +26,9 @@ A simple class-based sorting algorithm visualiser built with python
 - https://www.geeksforgeeks.org/counting-sort/
 - https://www.geeksforgeeks.org/bucket-sort-2/
 - https://www.geeksforgeeks.org/shellsort/
+- https://runestone.academy/runestone/books/published/pythonds/SortSearch/TheQuickSort.html
+- https://www.programiz.com/dsa/heap-sort
+- http://www.btechsmartclass.com/data_structures/heap-sort.html
+- https://www.programiz.com/dsa/counting-sort
+- https://www.programiz.com/dsa/radix-sort
+- https://stackabuse.com/bucket-sort-in-python/
