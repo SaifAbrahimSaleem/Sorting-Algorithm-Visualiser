@@ -1,7 +1,6 @@
-import numpy as np
-import random
 import time
-
+import random
+import numpy as np
 """
     SortAlgorithm Class:
 
@@ -285,7 +284,7 @@ class RadixSort(SortAlgorithm):
     BUCKET SORT ALGORITHM: The Bucket Sort Algorithm operates with the main logic being to sort elements through dividing the first elements into subgroups
     called buckets. The elements contained within each bucket are sorted using suitable algorithms or through recursively calling the same algorithm. The
     Buckets are thengathered to get the sorted array.
-    NOTE: The buckets will be sorted using selection sort.
+    NOTE: The buckets will be sorted using insertion sort.
         Steps:
             - Create N buckets containing a range of values
             - Initialise each bucket with 0 values
@@ -297,13 +296,20 @@ class BucketSort(SortAlgorithm):
     def __init__(self):
         super().__init__("BucketSort")
 
+
     def algorithm(self):
+        # Maximum value in the unsorted list
+        # self.update_indexes()
         self.update_indexes()
         max_val = max(self.array)
         time.sleep(1)
+        # Normalizing the unsorted list
         normalized_unsorted_list = list(map(lambda x: x / max_val, self.array))
+
+        # Total number of elements in the list - also the number of buckets that need to be created
         n = len(normalized_unsorted_list)
 
+        # Creating an empty list of buckets
         buckets = [[] for element in normalized_unsorted_list]
         bucket_colors = []
         for bucket in buckets:
@@ -354,16 +360,15 @@ class BucketSort(SortAlgorithm):
 
         return denormalized_buckets
 
-    def insertionSort(self, b):
-        for i in range(1, len(b)):
-            up = b[i]
+    def insertionSort(self, array):
+        for i in range(1, len(array)):
+            current_value = array[i]
             j = i - 1
-            while j >= 0 and b[j] > up:
-                b[j + 1] = b[j]
+            while j >= 0 and array[j] > current_value:
+                array[j + 1] = array[j]
                 j -= 1
-            b[j + 1] = up
-            # Update visualizer here
-        return b
+            array[j + 1] = current_value
+        return array
 
     def update_buckets(self, buckets, bucket_colours):
         import visualiser
