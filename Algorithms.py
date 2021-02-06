@@ -373,3 +373,29 @@ class BucketSort(SortAlgorithm):
     def update_buckets(self, buckets, bucket_colours):
         import visualiser
         visualiser.update_bucket(self, buckets, bucket_colours)
+
+"""
+    SHELL SORT ALGORITHM: A Variation of the InsertionSort Algorithm. In Insertion Sort, elements are moved only one position. The
+    Shell Sort Algorithm differs in its ability to move elements far ahead. The Shell Sort algorithm firstly sorts the elements which
+    are far apart from eachother, then reduces the interval between the leftover elements to be sorted (in succession).
+    Steps:
+        - Rearrange the elements within the array/list at specific intervals (i.e. n/2, n/4, n/8 etc.)
+        - Sort the elements for each interval in the array/list
+"""
+class ShellSort(SortAlgorithm):
+    def __init__(self):
+        super().__init__("ShellSort")
+
+    def algorithm(self):
+        n = len(self.array)
+        interval = n // 2
+        while interval > 0:
+            for i in range(interval, n):
+                current_value = self.array[i]
+                j = i
+                while j >= interval and self.array[j - interval] > current_value:
+                    self.array[j] = self.array[j-interval]
+                    j -= interval
+                self.array[j] = current_value
+                self.update_indexes(self.array[j], self.array[i])
+            interval //= 2

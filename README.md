@@ -10,9 +10,11 @@ A simple class-based sorting algorithm visualiser built with python and an Exten
 - Heap Sort
 - Radix Sort
 - Counting Sort
-# // TODO:
 - Bucket Sort
 - Shell Sort
+
+# TODO:
+- UI should be improved to be more user friendly
 
 # Tutorial Resources:
 - https://dev.to/kgprajwal/build-a-sorting-visualizer-in-python-2oej
@@ -32,3 +34,4 @@ A simple class-based sorting algorithm visualiser built with python and an Exten
 - https://www.programiz.com/dsa/counting-sort
 - https://www.programiz.com/dsa/radix-sort
 - https://stackabuse.com/bucket-sort-in-python/
+- https://www.programiz.com/dsa/shell-sort

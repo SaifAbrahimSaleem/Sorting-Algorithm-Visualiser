@@ -15,7 +15,8 @@ Algorithms = {
     "HeapSort": Algorithms.HeapSort(),
     "CountingSort": Algorithms.CountingSort(),
     "RadixSort": Algorithms.RadixSort(),
-    "BucketSort": Algorithms.BucketSort()
+    "BucketSort": Algorithms.BucketSort(),
+    "ShellSort": Algorithms.ShellSort()
 }
 
 window = pg.display.set_mode(dimensions)
