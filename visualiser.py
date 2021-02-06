@@ -15,6 +15,7 @@ Algorithms = {
     "HeapSort": Algorithms.HeapSort(),
     "CountingSort": Algorithms.CountingSort(),
     "RadixSort": Algorithms.RadixSort(),
+    "BucketSort": Algorithms.BucketSort()
 }
 
 window = pg.display.set_mode(dimensions)
@@ -38,6 +39,20 @@ def update(Algorithm, swap_index1=None, swap_index2=None, display=pg.display):
             colour = (255,0,0)
         pg.draw.rect(window, colour, (i*width,dimensions[1],width,-Algorithm.array[i]))
     pg.display.update()
+
+
+def update_bucket(Algorithm, buckets, bucket_colours):
+    window.fill(pg.Color("#a48be0"))
+    pg.display.set_caption("{} Algorithm Visualiser   Time: {:.2f}      Status: Sorting...".format(Algorithm.name, time.time() - Algorithm.start_time))
+    width = int(dimensions[0]/len(Algorithm.array))
+    count = 0
+    for b_index, bucket in enumerate(buckets):
+        colour = bucket_colours[b_index]
+        for e_index, element in enumerate(bucket):
+            pg.draw.rect(window, colour, (count * width, dimensions[1], width, -element))
+            count += 1
+    pg.display.update()
+
 
 def keep_open(Algorithm, display, time):
     pg.display.set_caption("{} Algorithm Visualiser   Time: {:.2f}      Status: Complete!".format(Algorithm.name, time))

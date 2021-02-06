@@ -1,5 +1,7 @@
-import time
+import numpy as np
 import random
+import time
+
 """
     SortAlgorithm Class:
 
@@ -294,3 +296,75 @@ class RadixSort(SortAlgorithm):
 class BucketSort(SortAlgorithm):
     def __init__(self):
         super().__init__("BucketSort")
+
+    def algorithm(self):
+        self.update_indexes()
+        max_val = max(self.array)
+        time.sleep(1)
+        normalized_unsorted_list = list(map(lambda x: x / max_val, self.array))
+        n = len(normalized_unsorted_list)
+
+        buckets = [[] for element in normalized_unsorted_list]
+        bucket_colors = []
+        for bucket in buckets:
+            while True:
+                color = self.generate_random_color()
+                if color in bucket_colors:
+                    continue
+
+                bucket_colors.append(color)
+                break
+
+        for index, element in enumerate(normalized_unsorted_list):
+            buckets[int((n - 1) * element)].append(element)
+
+        self.update_buckets(self.denormalize_buckets(buckets, max_val), bucket_colors)
+
+        for index, bucket in enumerate(buckets):
+            buckets[index] = self.insertionSort(bucket)
+            self.update_buckets(self.denormalize_buckets(buckets, max_val), bucket_colors)
+
+        self.array = self.denormalize(self.flatten(buckets), max_val)
+        self.update_indexes()
+
+    @staticmethod
+    def generate_random_color():
+        return tuple(np.random.choice(range(256), size=3))
+
+    @staticmethod
+    def flatten(list_of_lists):
+        flattened_list = []
+        for list_ in list_of_lists:
+            flattened_list.extend(list_)
+
+        return flattened_list
+
+    @staticmethod
+    def normalize(list_, max_val):
+        return list(map(lambda x: x / max_val, list_))
+
+    @staticmethod
+    def denormalize(list_, max_val):
+        return list(map(lambda x: x * max_val, list_))
+
+    def denormalize_buckets(self, buckets, max_val):
+        denormalized_buckets = []
+        for bucket in buckets:
+            denormalized_buckets.append(self.denormalize(bucket, max_val))
+
+        return denormalized_buckets
+
+    def insertionSort(self, b):
+        for i in range(1, len(b)):
+            up = b[i]
+            j = i - 1
+            while j >= 0 and b[j] > up:
+                b[j + 1] = b[j]
+                j -= 1
+            b[j + 1] = up
+            # Update visualizer here
+        return b
+
+    def update_buckets(self, buckets, bucket_colours):
+        import visualiser
+        visualiser.update_bucket(self, buckets, bucket_colours)
